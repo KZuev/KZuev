@@ -30,7 +30,7 @@ twitter_username: kzuev
 github_username:  kzuev
 
 # Build settings
-theme: minima
+theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
 
