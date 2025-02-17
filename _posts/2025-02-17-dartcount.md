@@ -4,6 +4,7 @@ title: "Проект DartCount"
 date: 2025-02-17
 categories: [Проекты, Разработка]
 tags: [Dart, проект, GitHub]
+excerpt: "DartCount — сайт для подсчета очков и управления результатами в дартс."
 ---
 
 # Проект DartCount
