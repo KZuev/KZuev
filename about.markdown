@@ -18,9 +18,9 @@ permalink: /about/
 
 [<img src="https://telegram.org/img/favicon.ico" alt="Telegram" style="width: 20px; height: 20px; vertical-align: middle;"> Telegram](https://t.me/kirillzuev)
 
-[<img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle;"> X (Twitter)](https:/x.com/kzuev)
+[<img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle;"> X (Twitter)](https://x.com/kzuev)
 
-[<img src="https://vk.ru/images/icons/favicons/fav_logo_2x.ico" alt="VK" style="width: 20px; height: 20px; vertical-align: middle;"> VK](https:/vk.com/kzuev)
+[<img src="https://vk.ru/images/icons/favicons/fav_logo_2x.ico" alt="VK" style="width: 20px; height: 20px; vertical-align: middle;"> VK](https://vk.com/kzuev)
 
 [<img src="https://static.licdn.com/aero-v1/scds/common/u/images/logos/favicons/v1/favicon.ico" alt="LinkedIn" style="width: 20px; height: 20px; vertical-align: middle;"> LinkedIn](https://www.linkedin.com/in/kzuev)
 
