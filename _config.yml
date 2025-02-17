@@ -19,6 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: KZuev.com
+default_locale: ru
 email: mail@kzuev.com
 # description: >- # this means to ignore newlines until "baseurl:"
 #   Write an awesome description for your new site here. You can edit this
