@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  push:
+    branches: [gh-pages]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Без UTF-8 Nokogiri не разбирает кириллицу и html-proofer
+    # молча проходит, проверив ноль ссылок.
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Собрать сайт
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+
+      - name: Проверить ссылки и разметку
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --allow-hash-href \
+            --ignore-empty-alt \
+            --no-enforce-https

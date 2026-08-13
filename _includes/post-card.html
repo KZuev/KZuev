@@ -1,0 +1,24 @@
+<article class="entry">
+  <div class="entry__meta">
+    {% include date.html date=include.post.date %}
+    {%- if include.post.tags and include.post.tags != empty %}
+    <ul class="tags">
+      {%- for tag in include.post.tags %}
+      <li>{{ tag }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+
+  <h2 class="entry__title">
+    <a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+  </h2>
+
+  <div class="entry__excerpt">
+    {%- if include.post.excerpt %}
+      <p>{{ include.post.excerpt | strip_html | strip | truncatewords: 34 }}</p>
+    {%- else %}
+      <p>{{ include.post.content | strip_html | strip | truncatewords: 34 }}</p>
+    {%- endif %}
+  </div>
+</article>

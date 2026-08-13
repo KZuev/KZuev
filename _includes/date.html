@@ -1,0 +1,2 @@
+{%- assign month_index = include.date | date: "%-m" | minus: 1 -%}
+<time class="date" datetime="{{ include.date | date_to_xmlschema }}">{{ include.date | date: "%-d" }} {{ site.data.ru.months[month_index] }} {{ include.date | date: "%Y" }}</time>

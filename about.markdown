@@ -1,35 +1,27 @@
 ---
 layout: page
-title: "Обо мне"
+title: Обо мне
 permalink: /about/
+lead: Кирилл Зуев. Делаю небольшие ИТ-проекты и пишу о том, как они устроены.
+description: Кирилл Зуев — об авторе сайта, проектах и о том, что здесь можно найти.
 ---
 
-# Связь со мной
+## Что здесь есть
 
-Если у вас есть вопросы или предложения, вы можете связаться со мной через один из следующих каналов:
+Этот сайт — моя личная площадка. Я выкладываю сюда
+[проекты]({{ '/projects/' | relative_url }}), которые делаю в свободное время,
+и [заметки]({{ '/blog/' | relative_url }}) о разработке: что пробовал,
+что сработало, а что пришлось переделывать.
 
-## Электронная почта
+## Как я работаю с кодом
 
-📧 **Email:** [mail@kzuev.com](mailto:mail@kzuev.com)
+Исходники проектов открыты и лежат на
+[GitHub](https://github.com/{{ site.github_username }}) — их можно смотреть,
+использовать и дорабатывать. Я стараюсь доводить вещи до состояния, когда ими
+можно пользоваться, а не только читать описание.
 
-## Социальные сети
+## Что дальше
 
-Вы можете найти меня в следующих социальных сетях и мессенджерах:
-
-[<img src="https://telegram.org/img/favicon.ico" alt="Telegram" style="width: 20px; height: 20px; vertical-align: middle;"> Telegram](https://t.me/kirillzuev)
-
-[<img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle;"> X (Twitter)](https://x.com/kzuev)
-
-[<img src="https://vk.ru/images/icons/favicons/fav_logo_2x.ico" alt="VK" style="width: 20px; height: 20px; vertical-align: middle;"> VK](https://vk.com/kzuev)
-
-[<img src="https://static.licdn.com/aero-v1/scds/common/u/images/logos/favicons/v1/favicon.ico" alt="LinkedIn" style="width: 20px; height: 20px; vertical-align: middle;"> LinkedIn](https://www.linkedin.com/in/kzuev)
-
-## Мой профиль на GitHub
-
-Я активно развиваю проекты на GitHub. Если вам интересен мой код или проекты, вы можете найти меня здесь:
-
-[<img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle;"> GitHub](https://github.com/kzuev)
-
-
-
-### Благодарю за внимание, и буду рад пообщаться с вами!
+Новые записи выходят нерегулярно, но их удобно не пропускать через
+[RSS]({{ '/feed.xml' | relative_url }}).
+А если хочется написать — вот [все способы связи]({{ '/contacts/' | relative_url }}).

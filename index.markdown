@@ -1,6 +1,11 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
+title: Главная
+description: >-
+  Кирилл Зуев — ИТ-проекты с открытым исходным кодом, эксперименты
+  и заметки о разработке.
 ---
+
+Привет! Здесь я собираю свои ИТ-проекты и пишу о том, что получается
+и что ломается по дороге. Код проектов открыт — им можно пользоваться,
+его можно форкать и улучшать.

@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{%- comment -%}
+  Цвет системного UI подстраивается под тему: в тёмной он строго чёрный,
+  чтобы на OLED-экранах панель браузера сливалась со страницей.
+{%- endcomment -%}
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+
+{%- seo -%}
+
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">

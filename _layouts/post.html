@@ -1,0 +1,48 @@
+---
+layout: default
+---
+<article class="shell prose" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="page-head">
+    <div class="entry__meta">
+      {% include date.html date=page.date %}
+      {%- if page.tags and page.tags != empty %}
+      <ul class="tags">
+        {%- for tag in page.tags %}
+        <li>{{ tag }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+    <h1 itemprop="headline">{{ page.title }}</h1>
+    {%- if page.excerpt %}
+    <p class="lead">{{ page.excerpt | strip_html | strip }}</p>
+    {%- endif %}
+  </header>
+
+  <div class="prose__body" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    {%- assign prev = page.previous -%}
+    {%- assign next = page.next -%}
+    {%- if prev or next %}
+    <nav class="pager" aria-label="Другие записи">
+      {%- if next %}
+      <a class="pager__item" href="{{ next.url | relative_url }}">
+        <span class="pager__label">Следующая</span>
+        <span class="pager__title">{{ next.title }}</span>
+      </a>
+      {%- endif %}
+      {%- if prev %}
+      <a class="pager__item pager__item--prev" href="{{ prev.url | relative_url }}">
+        <span class="pager__label">Предыдущая</span>
+        <span class="pager__title">{{ prev.title }}</span>
+      </a>
+      {%- endif %}
+    </nav>
+    {%- endif %}
+
+    <p class="post-footer__back"><a href="{{ '/blog/' | relative_url }}">Все записи</a></p>
+  </footer>
+</article>

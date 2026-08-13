@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<article class="shell prose">
+  <header class="page-head">
+    {%- if page.status %}
+    <div class="entry__meta">
+      <span class="status status--{{ page.status_kind | default: 'active' }}">{{ page.status }}</span>
+      {%- if page.stack %}
+      <ul class="tags">
+        {%- for item in page.stack %}
+        <li>{{ item }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+    {%- endif %}
+
+    <h1>{{ page.title }}</h1>
+    {%- if page.summary %}
+    <p class="lead">{{ page.summary }}</p>
+    {%- endif %}
+
+    {%- if page.repo or page.demo %}
+    <p class="actions">
+      {%- if page.demo %}<a class="button button--primary" href="{{ page.demo }}" rel="noopener">Открыть демо</a>{% endif %}
+      {%- if page.repo %}<a class="button" href="{{ page.repo }}" rel="noopener">Исходный код</a>{% endif %}
+    </p>
+    {%- endif %}
+  </header>
+
+  <div class="prose__body">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    <p class="post-footer__back"><a href="{{ '/projects/' | relative_url }}">Все проекты</a></p>
+  </footer>
+</article>

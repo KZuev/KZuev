@@ -1,0 +1,28 @@
+# Единственный источник правды по контактам: используется в подвале
+# и на странице /contacts/. Раньше эти ссылки дублировались в двух местах.
+- name: Email
+  url: mailto:mail@kzuev.com
+  handle: mail@kzuev.com
+  note: Самый надёжный способ
+
+- name: Telegram
+  url: https://t.me/kirillzuev
+  handle: "@kirillzuev"
+  note: Для коротких вопросов
+
+- name: GitHub
+  url: https://github.com/kzuev
+  handle: kzuev
+  note: Код и проекты
+
+- name: X
+  url: https://x.com/kzuev
+  handle: "@kzuev"
+
+- name: LinkedIn
+  url: https://www.linkedin.com/in/kzuev
+  handle: kzuev
+
+- name: VK
+  url: https://vk.com/kzuev
+  handle: kzuev

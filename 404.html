@@ -1,25 +1,26 @@
 ---
 permalink: /404.html
 layout: default
+title: Страница не найдена
+sitemap: false
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+<div class="shell notfound">
+  <p class="notfound__code">404</p>
+  <h1>Такой страницы нет</h1>
+  <p class="lead">Возможно, адрес изменился или в ссылке опечатка. Вот куда можно пойти дальше.</p>
 
-<div class="container">
-  <h1>404</h1>
+  <p class="actions">
+    <a class="button button--primary" href="{{ '/' | relative_url }}">На главную</a>
+    <a class="button" href="{{ '/blog/' | relative_url }}">Все записи</a>
+    <a class="button" href="{{ '/projects/' | relative_url }}">Проекты</a>
+  </p>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+  {%- if site.posts.size > 0 %}
+  <div class="entries notfound__recent">
+    {%- for post in site.posts limit: 3 %}
+      {% include post-card.html post=post %}
+    {%- endfor %}
+  </div>
+  {%- endif %}
 </div>

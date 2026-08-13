@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p class="site-footer__id">
+      <span>{{ site.author.name }}</span>
+      <span class="muted">{{ site.tagline }}</span>
+    </p>
+
+    <nav class="site-footer__links" aria-label="Контакты и подписка">
+      {%- for link in site.data.social %}
+      <a href="{{ link.url }}"{% unless link.url contains 'mailto:' %} rel="me noopener"{% endunless %}>{{ link.name }}</a>
+      {%- endfor %}
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </nav>
+
+    <p class="site-footer__meta muted">© {{ 'now' | date: "%Y" }} — собрано на Jekyll, исходники <a href="https://github.com/{{ site.github_username }}/{{ site.github_username }}">на GitHub</a></p>
+  </div>
+</footer>

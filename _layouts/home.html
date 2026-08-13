@@ -1,19 +1,57 @@
 ---
 layout: default
 ---
+<section class="shell intro">
+  <p class="intro__eyebrow">{{ site.author.name }}</p>
+  <h1 class="intro__title">{{ site.tagline }}</h1>
+  <div class="intro__body">
+    {{ content }}
+  </div>
+  <p class="actions">
+    <a class="button button--primary" href="{{ '/projects/' | relative_url }}">Смотреть проекты</a>
+    <a class="button" href="{{ '/contacts/' | relative_url }}">Связаться</a>
+  </p>
+</section>
 
-{% for post in site.posts %}
-  <article>
-    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    <p><em>{{ post.date | date: "%B %d, %Y" }}</em></p>
-    <p>
-      {% if post.excerpt %}
-        {{ post.excerpt }}
-      {% else %}
-        {{ post.content | strip_html | truncatewords: 50 }}
-      {% endif %}
-    </p>
-    <a href="{{ post.url }}">Подробнее...</a>
-  </article>
-  <hr style="border: 0; height: 1px; background: #ccc; margin: 30px 0;">
-{% endfor %}
+{%- assign featured = site.projects | sort: "order" | slice: 0, 3 %}
+{%- if featured and featured.size > 0 %}
+<section class="shell section">
+  <div class="section__head">
+    <h2>Проекты</h2>
+    <a class="section__more" href="{{ '/projects/' | relative_url }}">Все проекты</a>
+  </div>
+
+  <ul class="cards">
+    {%- for project in featured %}
+    <li class="card">
+      <a class="card__link" href="{{ project.url | relative_url }}">
+        <h3 class="card__title">{{ project.title }}</h3>
+        <p class="card__text">{{ project.summary }}</p>
+      </a>
+      {%- if project.stack %}
+      <ul class="tags">
+        {%- for item in project.stack %}
+        <li>{{ item }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+{%- if site.posts.size > 0 %}
+<section class="shell section">
+  <div class="section__head">
+    <h2>Последние записи</h2>
+    <a class="section__more" href="{{ '/blog/' | relative_url }}">Все записи</a>
+  </div>
+
+  <div class="entries">
+    {%- for post in site.posts limit: 5 %}
+      {% include post-card.html post=post %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
