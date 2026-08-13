@@ -2,7 +2,7 @@
 layout: page
 title: Контакты
 permalink: /contacts/
-lead: Пишите — отвечаю. Быстрее всего получается в почте и Telegram.
+lead: Пишите — отвечу. Быстрее всего получается в почте и Telegram.
 description: Как связаться с Кириллом Зуевым — почта, Telegram и социальные сети.
 redirect_from:
   - /contact/

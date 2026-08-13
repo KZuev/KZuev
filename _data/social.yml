@@ -12,15 +12,12 @@
   url: https://t.me/kirillzuev
   handle: "@kirillzuev"
   note:
-    ru: Для коротких вопросов
+    ru: Для быстрых вопросов
     en: For quick questions
 
 - name: GitHub
   url: https://github.com/kzuev
   handle: kzuev
-  note:
-    ru: Код и проекты
-    en: Code and projects
 
 - name: X
   url: https://x.com/kzuev
@@ -28,8 +25,4 @@
 
 - name: LinkedIn
   url: https://www.linkedin.com/in/kzuev
-  handle: kzuev
-
-- name: VK
-  url: https://vk.com/kzuev
   handle: kzuev

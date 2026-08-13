@@ -1,0 +1,25 @@
+<li class="card">
+  {%- if include.project.status or include.project.stack %}
+  <div class="entry__meta">
+    {%- if include.project.status %}
+    <span class="status status--{{ include.project.status_kind | default: 'active' }}">{{ include.project.status }}</span>
+    {%- endif %}
+    {%- if include.project.stack %}
+    <ul class="tags">
+      {%- for item in include.project.stack %}
+      <li>{{ item }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+  {%- endif %}
+
+  <a class="card__link" href="{{ include.project.repo }}">
+    {%- if include.heading == "h2" %}
+    <h2 class="card__title">{{ include.project.title }}</h2>
+    {%- else %}
+    <h3 class="card__title">{{ include.project.title }}</h3>
+    {%- endif %}
+    <p class="card__text">{{ include.project.summary }}</p>
+  </a>
+</li>

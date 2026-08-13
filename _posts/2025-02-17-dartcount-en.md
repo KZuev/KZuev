@@ -28,7 +28,4 @@ source is on [GitHub](https://github.com/KZuev/DartCount).
 I want to add new game modes, polish the interface, and support
 multiplayer games.
 
-Full write-up, links, and current status live on the project page:
-[DartCount]({{ '/en/projects/dartcount/' | relative_url }}).
-
 Feedback and suggestions are welcome — [get in touch]({{ '/en/contacts/' | relative_url }}).

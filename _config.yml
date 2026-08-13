@@ -33,9 +33,12 @@ github_username: kzuev
 permalink: /blog/:year/:month/:day/:title/
 
 collections:
+  # У проектов нет собственных страниц — только карточки в списках
+  # (см. _includes/project-card.html). Ссылка с карточки ведёт прямо
+  # в репозиторий на GitHub, чтобы не дублировать README и не следить
+  # отдельно за его актуальностью.
   projects:
-    output: true
-    permalink: /projects/:name/
+    output: false
 
 # Английские посты и проекты живут в тех же _posts/_projects, что и
 # русские, но с явными lang/permalink/locale в собственном front matter —
@@ -54,7 +57,6 @@ defaults:
       path: ""
       type: projects
     values:
-      layout: project
       lang: ru
       locale: ru_RU
   - scope:

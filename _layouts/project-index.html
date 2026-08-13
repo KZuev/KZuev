@@ -13,19 +13,7 @@ layout: default
   {%- if projects.size > 0 %}
   <ul class="cards">
     {%- for project in projects %}
-    <li class="card">
-      <a class="card__link" href="{{ project.url | relative_url }}">
-        <h2 class="card__title">{{ project.title }}</h2>
-        <p class="card__text">{{ project.summary }}</p>
-      </a>
-      {%- if project.stack %}
-      <ul class="tags">
-        {%- for item in project.stack %}
-        <li>{{ item }}</li>
-        {%- endfor %}
-      </ul>
-      {%- endif %}
-    </li>
+      {% include project-card.html project=project heading="h2" %}
     {%- endfor %}
   </ul>
   {%- else %}
