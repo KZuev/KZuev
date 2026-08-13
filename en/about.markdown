@@ -4,6 +4,8 @@ title: About
 permalink: /en/about/
 lead: Kirill Zuev. I build small IT projects and write about how they work.
 description: Kirill Zuev — about the author of this site, the projects, and what you'll find here.
+avatar: /assets/avatar.jpg
+avatar_alt: Kirill Zuev
 ---
 
 ## What's here

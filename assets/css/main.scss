@@ -312,6 +312,14 @@ p { margin: 0; }
   border-bottom: 1px solid var(--rule);
 }
 
+.avatar {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--rule-strong);
+}
+
 .date,
 .tags,
 .status {
