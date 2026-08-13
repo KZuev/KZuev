@@ -1,16 +1,18 @@
 ---
-title: LampaTrakt
+title: Lampa-Trakt
 order: 2
 summary: Плагин Trakt.tv для Lampa — история просмотров, статусы сериалов, несколько аккаунтов и совместный просмотр.
 status: Развивается
 status_kind: active
 stack: [JavaScript, Trakt API]
-repo: https://github.com/KZuev/LampaTrakt
+repo: https://github.com/KZuev/Lampa-Trakt
+redirect_from:
+  - /projects/lampatrakt/
 ---
 
 ## О проекте
 
-**LampaTrakt** — плагин для [Lampa](https://github.com/immisterio/Lampa), синхронизирующий
+**Lampa-Trakt** — плагин для [Lampa](https://github.com/immisterio/Lampa), синхронизирующий
 её с [Trakt.tv](https://trakt.tv): история просмотров, статусы сериалов, до шести аккаунтов
 одновременно и совместный просмотр несколькими профилями.
 
@@ -31,9 +33,9 @@ repo: https://github.com/KZuev/LampaTrakt
 В Lampa: **Настройки → Плагины → Добавить плагин вручную**, вставить адрес файла:
 
 ```
-https://raw.githubusercontent.com/KZuev/LampaTrakt/main/trakttv.js
+https://raw.githubusercontent.com/KZuev/Lampa-Trakt/main/trakttv.js
 ```
 
 После перезагрузки Lampa нужно один раз указать Client ID и Secret приложения Trakt.
 
-Исходники и обсуждение — на [GitHub](https://github.com/KZuev/LampaTrakt).
+Исходники и обсуждение — на [GitHub](https://github.com/KZuev/Lampa-Trakt).

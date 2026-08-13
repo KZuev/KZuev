@@ -1,19 +1,21 @@
 ---
-title: LampaTrakt
+title: Lampa-Trakt
 lang: en
 locale: en_US
-permalink: /en/projects/lampatrakt/
+permalink: /en/projects/lampa-trakt/
 order: 2
 summary: A Trakt.tv plugin for Lampa — watch history, show statuses, multiple accounts and shared viewing.
 status: In progress
 status_kind: active
 stack: [JavaScript, Trakt API]
-repo: https://github.com/KZuev/LampaTrakt
+repo: https://github.com/KZuev/Lampa-Trakt
+redirect_from:
+  - /en/projects/lampatrakt/
 ---
 
 ## About the project
 
-**LampaTrakt** is a plugin for [Lampa](https://github.com/immisterio/Lampa) that syncs it with
+**Lampa-Trakt** is a plugin for [Lampa](https://github.com/immisterio/Lampa) that syncs it with
 [Trakt.tv](https://trakt.tv): watch history, show statuses, up to six accounts at once, and
 shared viewing across profiles.
 
@@ -34,9 +36,9 @@ I keep developing it further.
 In Lampa: **Settings → Plugins → Add Plugin Manually**, then paste this file's address:
 
 ```
-https://raw.githubusercontent.com/KZuev/LampaTrakt/main/trakttv.js
+https://raw.githubusercontent.com/KZuev/Lampa-Trakt/main/trakttv.js
 ```
 
 After Lampa reloads, enter your Trakt app's Client ID and Secret once.
 
-Source and discussion — on [GitHub](https://github.com/KZuev/LampaTrakt).
+Source and discussion — on [GitHub](https://github.com/KZuev/Lampa-Trakt).
