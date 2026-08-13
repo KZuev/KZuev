@@ -5,8 +5,8 @@ summary: Счётчик очков для игры в дартс — счита�
 status: Развивается
 status_kind: active
 stack: [Dart, Web]
-repo: https://github.com/KZuev/dartcount
-demo: https://kzuev.github.io/dartcount/
+repo: https://github.com/KZuev/DartCount
+demo: https://kzuev.github.io/DartCount/
 ---
 
 ## О проекте
@@ -27,4 +27,4 @@ demo: https://kzuev.github.io/dartcount/
 - Многопользовательские партии
 
 Если проект оказался полезен — буду рад звёздочке на
-[GitHub](https://github.com/KZuev/dartcount) и замечаниям по делу.
+[GitHub](https://github.com/KZuev/DartCount) и замечаниям по делу.

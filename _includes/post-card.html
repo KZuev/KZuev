@@ -1,6 +1,6 @@
 <article class="entry">
   <div class="entry__meta">
-    {% include date.html date=include.post.date %}
+    {% include date.html date=include.post.date lang=include.post.lang %}
     {%- if include.post.tags and include.post.tags != empty %}
     <ul class="tags">
       {%- for tag in include.post.tags %}

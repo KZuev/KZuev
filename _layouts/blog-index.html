@@ -1,0 +1,25 @@
+---
+layout: default
+---
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign lang_posts = site.posts | where: "lang", page.lang -%}
+
+<div class="shell">
+  <header class="page-head">
+    <h1>{{ page.title }}</h1>
+    <p class="lead">
+      {{ page.lead }}
+      {% if page.lang == "ru" and lang_posts.size > 0 %}{{ t.misc.rss_note }} <a href="{{ '/feed.xml' | relative_url }}">RSS</a>.{% endif %}
+    </p>
+  </header>
+
+  {%- if lang_posts.size > 0 %}
+  <div class="entries">
+    {%- for post in lang_posts %}
+      {% include post-card.html post=post %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="muted">{{ t.misc.empty }}</p>
+  {%- endif %}
+</div>

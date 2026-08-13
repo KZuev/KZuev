@@ -5,22 +5,33 @@ title: Страница не найдена
 sitemap: false
 ---
 
+{%- comment -%}
+  GitHub Pages отдаёт один и тот же /404.html для любого пути, включая
+  /en/..., и понять из URL, на каком языке говорить с человеком, нельзя —
+  поэтому здесь показаны оба языка сразу, а не выбирается один через
+  обычный per-page lang.
+{%- endcomment -%}
+
 <div class="shell notfound">
   <p class="notfound__code">404</p>
-  <h1>Такой страницы нет</h1>
-  <p class="lead">Возможно, адрес изменился или в ссылке опечатка. Вот куда можно пойти дальше.</p>
 
-  <p class="actions">
-    <a class="button button--primary" href="{{ '/' | relative_url }}">На главную</a>
-    <a class="button" href="{{ '/blog/' | relative_url }}">Все записи</a>
-    <a class="button" href="{{ '/projects/' | relative_url }}">Проекты</a>
-  </p>
-
-  {%- if site.posts.size > 0 %}
-  <div class="entries notfound__recent">
-    {%- for post in site.posts limit: 3 %}
-      {% include post-card.html post=post %}
-    {%- endfor %}
+  <div class="notfound__lang">
+    <h1>Такой страницы нет</h1>
+    <p class="lead">Возможно, адрес изменился или в ссылке опечатка. Вот куда можно пойти дальше.</p>
+    <p class="actions">
+      <a class="button button--primary" href="{{ '/' | relative_url }}">На главную</a>
+      <a class="button" href="{{ '/blog/' | relative_url }}">Все записи</a>
+      <a class="button" href="{{ '/projects/' | relative_url }}">Проекты</a>
+    </p>
   </div>
-  {%- endif %}
+
+  <div class="notfound__lang">
+    <h1>Page not found</h1>
+    <p class="lead">The address may have changed, or there's a typo in the link. Here's where to go instead.</p>
+    <p class="actions">
+      <a class="button button--primary" href="{{ '/en/' | relative_url }}">Home</a>
+      <a class="button" href="{{ '/en/blog/' | relative_url }}">All posts</a>
+      <a class="button" href="{{ '/en/projects/' | relative_url }}">Projects</a>
+    </p>
+  </div>
 </div>

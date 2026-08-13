@@ -1,10 +1,12 @@
 ---
 layout: default
 ---
+{%- assign t = site.data.i18n[page.lang] -%}
+
 <article class="shell prose" itemscope itemtype="https://schema.org/BlogPosting">
   <header class="page-head">
     <div class="entry__meta">
-      {% include date.html date=page.date %}
+      {% include date.html date=page.date lang=page.lang %}
       {%- if page.tags and page.tags != empty %}
       <ul class="tags">
         {%- for tag in page.tags %}
@@ -23,26 +25,45 @@ layout: default
     {{ content }}
   </div>
 
+  {%- comment -%}
+    page.previous/page.next обходят весь site.posts без учёта языка —
+    на двуязычном блоге это перелинковало бы русский пост с английским.
+    Соседей считаем внутри постов только текущего языка.
+  {%- endcomment -%}
+  {%- assign lang_posts = site.posts | where: "lang", page.lang | sort: "date" -%}
+  {%- assign current_index = -1 -%}
+  {%- for post in lang_posts -%}
+    {%- if post.url == page.url -%}{%- assign current_index = forloop.index0 -%}{%- endif -%}
+  {%- endfor -%}
+  {%- assign next = nil -%}
+  {%- assign prev = nil -%}
+  {%- if current_index > -1 -%}
+    {%- assign next_index = current_index | plus: 1 -%}
+    {%- assign next = lang_posts[next_index] -%}
+    {%- if current_index > 0 -%}
+      {%- assign prev_index = current_index | minus: 1 -%}
+      {%- assign prev = lang_posts[prev_index] -%}
+    {%- endif -%}
+  {%- endif -%}
+
   <footer class="post-footer">
-    {%- assign prev = page.previous -%}
-    {%- assign next = page.next -%}
     {%- if prev or next %}
-    <nav class="pager" aria-label="Другие записи">
+    <nav class="pager" aria-label="{% if page.lang == 'en' %}More posts{% else %}Другие записи{% endif %}">
       {%- if next %}
       <a class="pager__item" href="{{ next.url | relative_url }}">
-        <span class="pager__label">Следующая</span>
+        <span class="pager__label">{{ t.misc.next }}</span>
         <span class="pager__title">{{ next.title }}</span>
       </a>
       {%- endif %}
       {%- if prev %}
       <a class="pager__item pager__item--prev" href="{{ prev.url | relative_url }}">
-        <span class="pager__label">Предыдущая</span>
+        <span class="pager__label">{{ t.misc.prev }}</span>
         <span class="pager__title">{{ prev.title }}</span>
       </a>
       {%- endif %}
     </nav>
     {%- endif %}
 
-    <p class="post-footer__back"><a href="{{ '/blog/' | relative_url }}">Все записи</a></p>
+    <p class="post-footer__back"><a href="{% if page.lang == 'en' %}/en/blog/{% else %}/blog/{% endif %}">{{ t.misc.back_to_posts }}</a></p>
   </footer>
 </article>

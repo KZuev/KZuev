@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{%- assign t = site.data.i18n[page.lang] -%}
+
 <article class="shell prose">
   <header class="page-head">
     {%- if page.status %}
@@ -23,8 +25,8 @@ layout: default
 
     {%- if page.repo or page.demo %}
     <p class="actions">
-      {%- if page.demo %}<a class="button button--primary" href="{{ page.demo }}" rel="noopener">Открыть демо</a>{% endif %}
-      {%- if page.repo %}<a class="button" href="{{ page.repo }}" rel="noopener">Исходный код</a>{% endif %}
+      {%- if page.demo %}<a class="button button--primary" href="{{ page.demo }}" rel="noopener">{{ t.actions.open_demo }}</a>{% endif %}
+      {%- if page.repo %}<a class="button" href="{{ page.repo }}" rel="noopener">{{ t.actions.source_code }}</a>{% endif %}
     </p>
     {%- endif %}
   </header>
@@ -34,6 +36,6 @@ layout: default
   </div>
 
   <footer class="post-footer">
-    <p class="post-footer__back"><a href="{{ '/projects/' | relative_url }}">Все проекты</a></p>
+    <p class="post-footer__back"><a href="{% if page.lang == 'en' %}/en/projects/{% else %}/projects/{% endif %}">{{ t.misc.back_to_projects }}</a></p>
   </footer>
 </article>

@@ -1,17 +1,18 @@
+{%- assign t = site.data.i18n[page.lang] -%}
 <footer class="site-footer">
   <div class="shell site-footer__inner">
     <p class="site-footer__id">
-      <span>{{ site.author.name }}</span>
-      <span class="muted">{{ site.tagline }}</span>
+      <span>{{ t.author_name }}</span>
+      <span class="muted">{{ t.tagline }}</span>
     </p>
 
-    <nav class="site-footer__links" aria-label="Контакты и подписка">
+    <nav class="site-footer__links" aria-label="{% if page.lang == 'en' %}Contacts and subscription{% else %}Контакты и подписка{% endif %}">
       {%- for link in site.data.social %}
       <a href="{{ link.url }}"{% unless link.url contains 'mailto:' %} rel="me noopener"{% endunless %}>{{ link.name }}</a>
       {%- endfor %}
       <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
     </nav>
 
-    <p class="site-footer__meta muted">© {{ 'now' | date: "%Y" }} — собрано на Jekyll, исходники <a href="https://github.com/{{ site.github_username }}/{{ site.github_username }}">на GitHub</a></p>
+    <p class="site-footer__meta muted">© {{ 'now' | date: "%Y" }} — {{ t.footer.built_with }} <a href="https://github.com/{{ site.github_username }}/{{ site.github_username }}">{{ t.footer.on_github }}</a></p>
   </div>
 </footer>

@@ -1,19 +1,26 @@
 # Единственный источник правды по контактам: используется в подвале
-# и на странице /contacts/. Раньше эти ссылки дублировались в двух местах.
+# и на страницах /contacts/ и /en/contacts/. note — по языкам, чтобы
+# страница контактов могла показать пояснение на языке страницы.
 - name: Email
   url: mailto:mail@kzuev.com
   handle: mail@kzuev.com
-  note: Самый надёжный способ
+  note:
+    ru: Самый надёжный способ
+    en: The most reliable way
 
 - name: Telegram
   url: https://t.me/kirillzuev
   handle: "@kirillzuev"
-  note: Для коротких вопросов
+  note:
+    ru: Для коротких вопросов
+    en: For quick questions
 
 - name: GitHub
   url: https://github.com/kzuev
   handle: kzuev
-  note: Код и проекты
+  note:
+    ru: Код и проекты
+    en: Code and projects
 
 - name: X
   url: https://x.com/kzuev

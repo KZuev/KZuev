@@ -13,7 +13,7 @@ redirect_from:
   <li>
     <span class="contact-list__name">{{ link.name }}</span>
     <a href="{{ link.url }}"{% unless link.url contains 'mailto:' %} rel="me noopener"{% endunless %}>{{ link.handle }}</a>
-    {%- if link.note %}<span class="contact-list__note">{{ link.note }}</span>{% endif %}
+    {%- if link.note %}<span class="contact-list__note">{{ link.note.ru }}</span>{% endif %}
   </li>
   {%- endfor %}
 </ul>

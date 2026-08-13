@@ -1,8 +1,10 @@
 # --- Идентичность сайта -------------------------------------------------
+# Тексты интерфейса (nav, кнопки, подписи) переведены отдельно —
+# см. _data/i18n.yml. Здесь остаются только site-wide фолбэки для
+# jekyll-seo-tag на случай, если у страницы нет своего description.
 title: KZuev.com
-tagline: ИТ-проекты, эксперименты и заметки о разработке
 description: >-
-  Персональный сайт Кирилла Зуева: ИТ-проекты с открытым исходным кодом,
+  Персональный сайт Кирилла Зуева: проекты с открытым исходным кодом,
   эксперименты и заметки о разработке.
 # Хешем, а не строкой: иначе jekyll-seo-tag подставляет имя автора
 # в twitter:creator вместо ника.
@@ -35,25 +37,42 @@ collections:
     output: true
     permalink: /projects/:name/
 
+# Английские посты и проекты живут в тех же _posts/_projects, что и
+# русские, но с явными lang/permalink/locale в собственном front matter —
+# это надёжнее, чем полагаться на специфичность вложенных defaults-скоупов
+# для двух языков в одной коллекции. Английские *страницы* (en/*), наоборот,
+# получают lang через defaults ниже: путь "en" однозначно их выделяет.
 defaults:
   - scope:
       path: ""
       type: posts
     values:
       layout: post
+      lang: ru
+      locale: ru_RU
   - scope:
       path: ""
       type: projects
     values:
       layout: project
+      lang: ru
+      locale: ru_RU
   - scope:
       path: ""
     values:
       layout: page
+      lang: ru
+      locale: ru_RU
       # jekyll-seo-tag берёт image только из front matter страницы,
       # поэтому картинку для превью раздаём через defaults.
       # Отдельной странице её можно переопределить в front matter.
       image: /assets/og.png
+  - scope:
+      path: "en"
+    values:
+      lang: en
+      locale: en_US
+      image: /assets/og-en.png
 
 # --- Сборка -------------------------------------------------------------
 markdown: kramdown

@@ -1,15 +1,56 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign prefix = "" -%}
+{%- if page.lang == "en" -%}{%- assign prefix = "/en" -%}{%- endif -%}
+
+{%- comment -%}
+  Ссылка на перевод текущей страницы: весь контент зеркалится один в
+  один по пути с префиксом /en, поэтому адрес пары считается, а не
+  хранится отдельно в каждом файле.
+{%- endcomment -%}
+{%- if page.lang == "en" -%}
+  {%- assign other_url = page.url | remove_first: "/en" -%}
+  {%- if other_url == "" -%}{%- assign other_url = "/" -%}{%- endif -%}
+{%- else -%}
+  {%- assign other_url = "/en" | append: page.url -%}
+{%- endif -%}
+
+{%- assign home_url = prefix | append: "/" -%}
+
 <header class="site-header">
   <div class="shell site-header__inner">
-    <a class="wordmark" href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>
-      <span class="wordmark__name">{{ site.author.name }}</span>
+    <a class="wordmark" href="{{ home_url | relative_url }}" {% if page.url == home_url %}aria-current="page"{% endif %}>
+      <span class="wordmark__name">{{ t.author_name }}</span>
       <span class="wordmark__domain">kzuev.com</span>
     </a>
 
-    <nav class="site-nav" aria-label="Основная навигация">
-      <a href="{{ '/projects/' | relative_url }}" {% if page.url contains '/projects' %}aria-current="page"{% endif %}>Проекты</a>
-      <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog' %}aria-current="page"{% endif %}>Записи</a>
-      <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about' %}aria-current="page"{% endif %}>Обо мне</a>
-      <a href="{{ '/contacts/' | relative_url }}" {% if page.url contains '/contacts' %}aria-current="page"{% endif %}>Контакты</a>
-    </nav>
+    <div class="site-header__right">
+      <nav class="site-nav" aria-label="{% if page.lang == 'en' %}Main navigation{% else %}Основная навигация{% endif %}">
+        <a href="{{ prefix | append: '/projects/' | relative_url }}" {% if page.url contains '/projects' %}aria-current="page"{% endif %}>{{ t.nav.projects }}</a>
+        <a href="{{ prefix | append: '/blog/' | relative_url }}" {% if page.url contains '/blog' %}aria-current="page"{% endif %}>{{ t.nav.blog }}</a>
+        <a href="{{ prefix | append: '/about/' | relative_url }}" {% if page.url contains '/about' %}aria-current="page"{% endif %}>{{ t.nav.about }}</a>
+        <a href="{{ prefix | append: '/contacts/' | relative_url }}" {% if page.url contains '/contacts' %}aria-current="page"{% endif %}>{{ t.nav.contacts }}</a>
+      </nav>
+
+      <div class="site-header__controls">
+        {%- comment -%}
+          У 404 нет зеркала на другом языке — страница уже показывает
+          оба языка сразу, переключатель там только запутает.
+        {%- endcomment -%}
+        {%- unless page.url == "/404.html" -%}
+        <a class="lang-switch" href="{{ other_url | relative_url }}" hreflang="{% if page.lang == 'en' %}ru{% else %}en{% endif %}" lang="{% if page.lang == 'en' %}ru{% else %}en{% endif %}" aria-label="{{ t.lang_switch.aria }}">{{ t.lang_switch.label }}</a>
+        {%- endunless -%}
+
+        <button type="button" class="theme-toggle" aria-pressed="false" aria-label="{{ t.theme_toggle.aria }}" data-label-to-dark="{{ t.theme_toggle.to_dark }}" data-label-to-light="{{ t.theme_toggle.to_light }}">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.7 14.9A9 9 0 1 1 9.1 3.3a7 7 0 0 0 11.6 11.6Z"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
   </div>
 </header>

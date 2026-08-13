@@ -13,8 +13,8 @@ redirect_from:
 в дартс: он ведёт партию, а вам остаётся бросать.
 
 Пробовать ничего устанавливать не нужно — проект
-[открывается прямо в браузере](https://kzuev.github.io/dartcount/),
-а исходники лежат [на GitHub](https://github.com/KZuev/dartcount).
+[открывается прямо в браузере](https://kzuev.github.io/DartCount/),
+а исходники лежат [на GitHub](https://github.com/KZuev/DartCount).
 
 ## Что уже умеет
 

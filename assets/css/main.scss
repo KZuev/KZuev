@@ -5,14 +5,18 @@
 /* =========================================================================
    Токены
    Светлая тема — на чистом белом, тёмная — на чистом чёрном (#000),
-   чтобы на OLED-экранах фон физически не светился. Переключение
-   автоматическое, по системной настройке; color-scheme в head.html
-   заодно перекрашивает скроллбары и элементы форм.
+   чтобы на OLED-экранах фон физически не светился.
+
+   Тема может быть выбрана вручную (кнопка в шапке, значение в
+   localStorage, атрибут data-theme на <html>) или следовать системной
+   настройке, если выбора нет. Отсюда три места, где токены переопре-
+   деляются: media-запрос (системная тёмная), [data-theme="dark"]
+   (явный выбор) и [data-theme="light"] (явный выбор, отменяющий тёмную
+   системную). Чтобы не держать три копии значений, они вынесены в
+   миксины и просто переиспользуются.
    ========================================================================= */
 
-:root {
-  color-scheme: light dark;
-
+@mixin light-tokens {
   --bg: #ffffff;
   --bg-soft: #f7f5f3;
   --bg-veil: rgba(255, 255, 255, .82);
@@ -24,9 +28,31 @@
   --rule: #e7e4e1;
   --rule-strong: #d3cec9;
 
-  --accent: #c2410c;
+  --accent: #9147ff;
   --accent-ink: #ffffff;
-  --accent-soft: #fbeade;
+  --accent-soft: #f3edff;
+}
+
+@mixin dark-tokens {
+  --bg: #000000;
+  --bg-soft: #0d0c0b;
+  --bg-veil: rgba(0, 0, 0, .78);
+
+  --ink: #ededec;
+  --ink-soft: #c6c2be;
+  --muted: #8f8a85;
+
+  --rule: #201e1c;
+  --rule-strong: #2e2b28;
+
+  --accent: #b98cff;
+  --accent-ink: #170b2e;
+  --accent-soft: #241335;
+}
+
+:root {
+  color-scheme: light dark;
+  @include light-tokens;
 
   --radius: 10px;
   --shell: 44rem;
@@ -39,22 +65,20 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #000000;
-    --bg-soft: #0d0c0b;
-    --bg-veil: rgba(0, 0, 0, .78);
-
-    --ink: #ededec;
-    --ink-soft: #c6c2be;
-    --muted: #8f8a85;
-
-    --rule: #201e1c;
-    --rule-strong: #2e2b28;
-
-    --accent: #ff9160;
-    --accent-ink: #1a0b03;
-    --accent-soft: #22140c;
+  :root:not([data-theme="light"]) {
+    @include dark-tokens;
+    color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  @include dark-tokens;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  @include light-tokens;
+  color-scheme: light;
 }
 
 /* =========================================================================
@@ -171,6 +195,13 @@ a:hover { text-decoration-color: var(--accent); }
   color: var(--muted);
 }
 
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
 .site-nav {
   display: flex;
   gap: 1.15rem;
@@ -188,6 +219,64 @@ a:hover { text-decoration-color: var(--accent); }
   color: var(--ink);
   border-bottom-color: var(--accent);
 }
+
+.site-header__controls {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  padding-inline: .65rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: border-color .15s ease, color .15s ease;
+}
+.lang-switch:hover { border-color: var(--ink); color: var(--ink); }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
+.theme-toggle svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Какая иконка видна, решает не JS, а тот же токенный каскад, что и
+   цвета: системная тёмная тема показывает солнце (нажми — станет
+   светло), явный выбор в любую сторону перекрывает системную. */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 /* =========================================================================
    Типографика
@@ -618,13 +707,8 @@ p { margin: 0; }
 .notfound {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 2.25rem;
   align-items: flex-start;
-}
-.notfound__recent {
-  width: 100%;
-  margin-top: 1rem;
-  border-top: 1px solid var(--rule);
 }
 .notfound__code {
   font-family: var(--mono);
@@ -632,6 +716,18 @@ p { margin: 0; }
   line-height: 1;
   letter-spacing: -.04em;
   color: var(--accent);
+}
+.notfound__lang {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--rule);
+}
+.notfound__lang:first-of-type {
+  padding-top: 0;
+  border-top: 0;
 }
 
 /* =========================================================================
@@ -650,7 +746,8 @@ p { margin: 0; }
 
 @media (max-width: 30rem) {
   .site-header__inner { padding-block: .75rem; }
-  .site-nav { gap: .9rem; width: 100%; }
+  .site-header__right { width: 100%; justify-content: space-between; }
+  .site-nav { gap: .9rem; }
   .contact-list__name { width: 100%; }
   .contact-list__note { margin-left: 0; }
 }

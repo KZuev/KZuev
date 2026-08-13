@@ -1,24 +1,26 @@
 ---
 layout: default
 ---
+{%- assign t = site.data.i18n[page.lang] -%}
+
 <section class="shell intro">
-  <p class="intro__eyebrow">{{ site.author.name }}</p>
-  <h1 class="intro__title">{{ site.tagline }}</h1>
+  <p class="intro__eyebrow">{{ t.author_name }}</p>
+  <h1 class="intro__title">{{ t.tagline }}</h1>
   <div class="intro__body">
     {{ content }}
   </div>
   <p class="actions">
-    <a class="button button--primary" href="{{ '/projects/' | relative_url }}">Смотреть проекты</a>
-    <a class="button" href="{{ '/contacts/' | relative_url }}">Связаться</a>
+    <a class="button button--primary" href="{% if page.lang == 'en' %}/en/projects/{% else %}/projects/{% endif %}">{{ t.actions.view_projects }}</a>
+    <a class="button" href="{% if page.lang == 'en' %}/en/contacts/{% else %}/contacts/{% endif %}">{{ t.actions.contact }}</a>
   </p>
 </section>
 
-{%- assign featured = site.projects | sort: "order" | slice: 0, 3 %}
+{%- assign featured = site.projects | where: "lang", page.lang | sort: "order" | slice: 0, 3 %}
 {%- if featured and featured.size > 0 %}
 <section class="shell section">
   <div class="section__head">
-    <h2>Проекты</h2>
-    <a class="section__more" href="{{ '/projects/' | relative_url }}">Все проекты</a>
+    <h2>{{ t.sections.projects }}</h2>
+    <a class="section__more" href="{% if page.lang == 'en' %}/en/projects/{% else %}/projects/{% endif %}">{{ t.sections.all_projects }}</a>
   </div>
 
   <ul class="cards">
@@ -41,15 +43,16 @@ layout: default
 </section>
 {%- endif %}
 
-{%- if site.posts.size > 0 %}
+{%- assign lang_posts = site.posts | where: "lang", page.lang %}
+{%- if lang_posts.size > 0 %}
 <section class="shell section">
   <div class="section__head">
-    <h2>Последние записи</h2>
-    <a class="section__more" href="{{ '/blog/' | relative_url }}">Все записи</a>
+    <h2>{{ t.sections.posts }}</h2>
+    <a class="section__more" href="{% if page.lang == 'en' %}/en/blog/{% else %}/blog/{% endif %}">{{ t.sections.all_posts }}</a>
   </div>
 
   <div class="entries">
-    {%- for post in site.posts limit: 5 %}
+    {%- for post in lang_posts limit: 5 %}
       {% include post-card.html post=post %}
     {%- endfor %}
   </div>

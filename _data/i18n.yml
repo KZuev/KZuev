@@ -1,0 +1,78 @@
+# Единственный источник интерфейсных строк для обеих версий сайта.
+# Контент страниц (тексты постов, about, contacts) не хранится здесь —
+# он живёт в самих файлах на каждом языке отдельно.
+ru:
+  html_lang: ru
+  locale: ru_RU
+  author_name: "Кирилл Зуев"
+  tagline: "Проекты, эксперименты и заметки"
+  nav:
+    projects: "Проекты"
+    blog: "Записи"
+    about: "Обо мне"
+    contacts: "Контакты"
+  actions:
+    view_projects: "Смотреть проекты"
+    contact: "Связаться"
+    open_demo: "Открыть демо"
+    source_code: "Исходный код"
+  sections:
+    projects: "Проекты"
+    all_projects: "Все проекты"
+    posts: "Последние записи"
+    all_posts: "Все записи"
+  misc:
+    empty: "Пока пусто."
+    rss_note: "Есть"
+    prev: "Предыдущая"
+    next: "Следующая"
+    back_to_posts: "Все записи"
+    back_to_projects: "Все проекты"
+  footer:
+    built_with: "собрано на Jekyll, исходники"
+    on_github: "на GitHub"
+  lang_switch:
+    label: "EN"
+    aria: "Switch to English"
+  theme_toggle:
+    aria: "Переключить тему"
+    to_dark: "Включить тёмную тему"
+    to_light: "Включить светлую тему"
+
+en:
+  html_lang: en
+  locale: en_US
+  author_name: "Kirill Zuev"
+  tagline: "Projects, experiments and notes"
+  nav:
+    projects: "Projects"
+    blog: "Blog"
+    about: "About"
+    contacts: "Contact"
+  actions:
+    view_projects: "View projects"
+    contact: "Get in touch"
+    open_demo: "Open demo"
+    source_code: "Source code"
+  sections:
+    projects: "Projects"
+    all_projects: "All projects"
+    posts: "Latest posts"
+    all_posts: "All posts"
+  misc:
+    empty: "Nothing here yet."
+    rss_note: "There's an"
+    prev: "Previous"
+    next: "Next"
+    back_to_posts: "All posts"
+    back_to_projects: "All projects"
+  footer:
+    built_with: "built with Jekyll, source on"
+    on_github: "GitHub"
+  lang_switch:
+    label: "RU"
+    aria: "Перейти на русский"
+  theme_toggle:
+    aria: "Toggle theme"
+    to_dark: "Switch to dark theme"
+    to_light: "Switch to light theme"
