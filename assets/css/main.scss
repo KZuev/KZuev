@@ -170,7 +170,6 @@ a:hover { text-decoration-color: var(--accent); }
 .site-header__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1.25rem;
   flex-wrap: wrap;
   padding-block: .9rem;
@@ -182,6 +181,10 @@ a:hover { text-decoration-color: var(--accent); }
   line-height: 1.2;
   text-decoration: none;
   color: var(--ink);
+  /* Прибивает навигацию и переключатели к правому краю на широких
+     экранах; на узких эта же граница определяет, что переносится
+     на вторую строку первым — см. мобильный брейкпоинт ниже. */
+  margin-right: auto;
 }
 .wordmark__name {
   font-weight: 620;
@@ -193,13 +196,6 @@ a:hover { text-decoration-color: var(--accent); }
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.site-header__right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
 }
 
 .site-nav {
@@ -747,8 +743,10 @@ p { margin: 0; }
 
 @media (max-width: 30rem) {
   .site-header__inner { padding-block: .75rem; }
-  .site-header__right { width: 100%; justify-content: space-between; }
-  .site-nav { gap: .9rem; }
+  /* Переключатели остаются в одной строке с логотипом; навигация —
+     единственное, что переносится на новую, во всю ширину. */
+  .site-nav { gap: .9rem; width: 100%; order: 3; }
+  .site-header__controls { order: 2; }
   .contact-list__name { width: 100%; }
   .contact-list__note { margin-left: 0; }
 }
