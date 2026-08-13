@@ -1,0 +1,28 @@
+---
+permalink: /site.webmanifest
+layout: null
+sitemap: false
+---
+{
+  "name": "KZuev.com",
+  "short_name": "KZuev",
+  "description": "Кирилл Зуев — проекты, эксперименты и заметки",
+  "start_url": "{{ '/' | relative_url }}",
+  "scope": "{{ '/' | relative_url }}",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "{{ '/assets/icons/icon-192.png' | relative_url }}?v={{ site.time | date: '%s' }}",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "{{ '/assets/icons/icon-512.png' | relative_url }}?v={{ site.time | date: '%s' }}",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -71,3 +71,14 @@
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ build_version }}">
 <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ build_version }}" defer></script>
+
+{%- comment -%}
+  Даёт браузеру предложить «Добавить на экран Домой». Своя иконка
+  (не favicon.svg — iOS её не читает) и splash в чёрной идентичности
+  сайта, независимо от того, в какой теме сайт открыт сейчас.
+{%- endcomment -%}
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}?v={{ build_version }}">
+<link rel="apple-touch-icon" href="{{ '/assets/icons/icon-180.png' | relative_url }}?v={{ build_version }}">
+<meta name="apple-mobile-web-app-title" content="KZuev">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
