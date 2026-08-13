@@ -3,7 +3,7 @@ title: Lampa-Plex
 lang: en
 locale: en_US
 permalink: /en/projects/lampa-plex/
-order: 3
+date: 2026-07-09
 summary: Personal Plex server integration for Lampa — a unified movie and show grid with direct playback.
 status: In progress
 status_kind: active

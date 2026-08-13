@@ -16,9 +16,9 @@ development: what I tried, what worked, and what I had to redo.
 
 ## How I work with code
 
-Project sources are open on [GitHub](https://github.com/{{ site.github_username }}) —
-you can look at them, use them, and build on them. I try to get things to a
-state where they're actually usable, not just described.
+Project code lives on [GitHub](https://github.com/{{ site.github_username }}) —
+some of it is fully open, some still a work in progress. I try to get things
+to a state where they're actually usable, not just described.
 
 ## What's next
 

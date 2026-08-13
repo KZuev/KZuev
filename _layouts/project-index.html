@@ -2,7 +2,7 @@
 layout: default
 ---
 {%- assign t = site.data.i18n[page.lang] -%}
-{%- assign projects = site.projects | where: "lang", page.lang | sort: "order" -%}
+{%- assign projects = site.projects | where: "lang", page.lang | sort: "date" | reverse -%}
 
 <div class="shell">
   <header class="page-head">

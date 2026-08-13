@@ -4,7 +4,6 @@ layout: default
 {%- assign t = site.data.i18n[page.lang] -%}
 
 <section class="shell intro">
-  <p class="intro__eyebrow">{{ t.author_name }}</p>
   <h1 class="intro__title">{{ t.tagline }}</h1>
   <div class="intro__body">
     {{ content }}
@@ -15,8 +14,12 @@ layout: default
   </p>
 </section>
 
-{%- assign featured = site.projects | where: "lang", page.lang | sort: "order" | slice: 0, 3 %}
-{%- if featured and featured.size > 0 %}
+{%- comment -%}
+  Все проекты, самые новые сверху — по дате, а не по ручному порядку,
+  чтобы список на главной честно отражал, что добавлено последним.
+{%- endcomment -%}
+{%- assign all_projects = site.projects | where: "lang", page.lang | sort: "date" | reverse %}
+{%- if all_projects and all_projects.size > 0 %}
 <section class="shell section">
   <div class="section__head">
     <h2>{{ t.sections.projects }}</h2>
@@ -24,7 +27,7 @@ layout: default
   </div>
 
   <ul class="cards">
-    {%- for project in featured %}
+    {%- for project in all_projects %}
     <li class="card">
       <a class="card__link" href="{{ project.url | relative_url }}">
         <h3 class="card__title">{{ project.title }}</h3>

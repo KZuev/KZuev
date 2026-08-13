@@ -48,7 +48,7 @@ layout: default
 
   <footer class="post-footer">
     {%- if prev or next %}
-    <nav class="pager" aria-label="{% if page.lang == 'en' %}More posts{% else %}Другие записи{% endif %}">
+    <nav class="pager" aria-label="{% if page.lang == 'en' %}More posts{% else %}Другие заметки{% endif %}">
       {%- if next %}
       <a class="pager__item" href="{{ next.url | relative_url }}">
         <span class="pager__label">{{ t.misc.next }}</span>

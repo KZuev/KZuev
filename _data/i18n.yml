@@ -8,7 +8,7 @@ ru:
   tagline: "Проекты, эксперименты и заметки"
   nav:
     projects: "Проекты"
-    blog: "Записи"
+    blog: "Заметки"
     about: "Обо мне"
     contacts: "Контакты"
   actions:
@@ -19,18 +19,17 @@ ru:
   sections:
     projects: "Проекты"
     all_projects: "Все проекты"
-    posts: "Последние записи"
-    all_posts: "Все записи"
+    posts: "Последние заметки"
+    all_posts: "Все заметки"
   misc:
     empty: "Пока пусто."
     rss_note: "Есть"
     prev: "Предыдущая"
     next: "Следующая"
-    back_to_posts: "Все записи"
+    back_to_posts: "Все заметки"
     back_to_projects: "Все проекты"
   footer:
-    built_with: "собрано на Jekyll, исходники"
-    on_github: "на GitHub"
+    built_with: "собрано на Jekyll"
   lang_switch:
     label: "EN"
     aria: "Switch to English"
@@ -67,8 +66,7 @@ en:
     back_to_posts: "All posts"
     back_to_projects: "All projects"
   footer:
-    built_with: "built with Jekyll, source on"
-    on_github: "GitHub"
+    built_with: "built with Jekyll"
   lang_switch:
     label: "RU"
     aria: "Перейти на русский"

@@ -1,6 +1,6 @@
 ---
 title: Lampa-Trakt
-order: 2
+date: 2026-05-21
 summary: Плагин Trakt.tv для Lampa — история просмотров, статусы сериалов, несколько аккаунтов и совместный просмотр.
 status: Развивается
 status_kind: active

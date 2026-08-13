@@ -3,7 +3,7 @@ title: DartCount
 lang: en
 locale: en_US
 permalink: /en/projects/dartcount/
-order: 1
+date: 2024-11-07
 summary: A dart-scoring counter — tracks the game for you, runs right in the browser.
 status: In progress
 status_kind: active

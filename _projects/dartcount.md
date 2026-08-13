@@ -1,6 +1,6 @@
 ---
 title: DartCount
-order: 1
+date: 2024-11-07
 summary: Счётчик очков для игры в дартс — считает партию за вас, работает прямо в браузере.
 status: Развивается
 status_kind: active

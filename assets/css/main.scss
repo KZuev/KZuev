@@ -371,13 +371,6 @@ p { margin: 0; }
   flex-direction: column;
   gap: 1.1rem;
 }
-.intro__eyebrow {
-  font-family: var(--mono);
-  font-size: .72rem;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
 .intro__title {
   font-size: clamp(2.1rem, 6.4vw, 3.1rem);
   max-width: 18ch;
@@ -601,7 +594,7 @@ p { margin: 0; }
 .table-scroll { overflow-x: auto; }
 
 /* =========================================================================
-   Подвал статьи и навигация между записями
+   Подвал статьи и навигация между заметками
    ========================================================================= */
 
 .post-footer {

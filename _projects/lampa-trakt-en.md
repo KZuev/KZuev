@@ -3,7 +3,7 @@ title: Lampa-Trakt
 lang: en
 locale: en_US
 permalink: /en/projects/lampa-trakt/
-order: 2
+date: 2026-05-21
 summary: A Trakt.tv plugin for Lampa — watch history, show statuses, multiple accounts and shared viewing.
 status: In progress
 status_kind: active
