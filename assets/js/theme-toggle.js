@@ -21,22 +21,38 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     var button = document.querySelector(".theme-toggle");
-    if (!button) return;
+    if (button) {
+      var current = effectiveTheme();
+      syncButton(button, current);
+      syncMeta(current);
 
-    var current = effectiveTheme();
-    syncButton(button, current);
-    syncMeta(current);
+      button.addEventListener("click", function () {
+        var next = effectiveTheme() === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem("theme", next);
+        } catch (err) {
+          /* приватный режим или заблокированное хранилище — тема просто не запомнится */
+        }
+        syncButton(button, next);
+        syncMeta(next);
+      });
+    }
 
-    button.addEventListener("click", function () {
-      var next = effectiveTheme() === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      try {
-        localStorage.setItem("theme", next);
-      } catch (err) {
-        /* приватный режим или заблокированное хранилище — тема просто не запомнится */
-      }
-      syncButton(button, next);
-      syncMeta(next);
-    });
+    // Ручное переключение языка — тоже осознанный выбор, запоминаем его
+    // так же, как тему. Целевой язык уже лежит в hreflang этой ссылки.
+    var langSwitch = document.querySelector(".lang-switch");
+    if (langSwitch) {
+      langSwitch.addEventListener("click", function () {
+        var target = langSwitch.getAttribute("hreflang");
+        if (target === "ru" || target === "en") {
+          try {
+            localStorage.setItem("lang", target);
+          } catch (err) {
+            /* приватный режим или заблокированное хранилище — выбор просто не запомнится */
+          }
+        }
+      });
+    }
   });
 })();

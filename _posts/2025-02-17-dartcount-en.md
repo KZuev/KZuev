@@ -4,7 +4,9 @@ title: "The DartCount project"
 date: 2025-02-17
 lang: en
 locale: en_US
-permalink: /en/blog/2025/02/17/dartcount/
+permalink: /en/notes/2025/02/17/dartcount/
+redirect_from:
+  - /en/blog/2025/02/17/dartcount/
 categories: [projects]
 tags: [Dart, project, GitHub]
 excerpt: "DartCount is a dart-scoring counter that runs right in the browser."

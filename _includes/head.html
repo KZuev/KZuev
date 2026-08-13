@@ -41,6 +41,40 @@
 {%- endcomment -%}
 {%- assign is_home = false -%}
 {%- if page.url == "/" or page.url == "/en/" -%}{%- assign is_home = true -%}{%- endif -%}
+
+{%- if is_home -%}
+{%- comment -%}
+  Только на двух домашних страницах: без сохранённого выбора язык
+  решает браузер (navigator.language), с сохранённым — он и побеждает,
+  даже если язык браузера с тех пор сменился. Ручной выбор в шапке
+  (theme-toggle.js) пишет то же значение при клике, так что выбор
+  переживает уход с сайта. Глубокие ссылки на конкретные страницы
+  этим скриптом не трогаются — только сама точка входа "/".
+{%- endcomment -%}
+<script>
+  (function () {
+    try {
+      var current = "{{ page.lang }}";
+      var stored = localStorage.getItem("lang");
+      var target = stored;
+
+      if (target !== "ru" && target !== "en") {
+        var browserLang = ((navigator.language || navigator.userLanguage || "") + "").toLowerCase();
+        target = browserLang.indexOf("ru") === 0 ? "ru" : "en";
+      }
+
+      if (target !== current) {
+        localStorage.setItem("lang", target);
+        location.replace(target === "ru" ? "{{ '/' | relative_url }}" : "{{ '/en/' | relative_url }}");
+        return;
+      }
+
+      localStorage.setItem("lang", current);
+    } catch (e) {}
+  })();
+</script>
+{%- endif -%}
+
 {%- if is_home -%}
   <title>{{ site.title }}</title>
   {%- seo title=false -%}

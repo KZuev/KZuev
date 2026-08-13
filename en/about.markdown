@@ -11,7 +11,7 @@ avatar_alt: Kirill Zuev
 ## What's here
 
 This is my personal site. I publish [projects]({{ '/en/projects/' | relative_url }})
-I build in my spare time, and [notes]({{ '/en/blog/' | relative_url }}) on
+I build in my spare time, and [notes]({{ '/en/notes/' | relative_url }}) on
 development: what I tried, what worked, and what I had to redo.
 
 ## How I work with code

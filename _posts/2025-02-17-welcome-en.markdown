@@ -4,8 +4,10 @@ title: "Welcome!"
 date: 2025-02-17
 lang: en
 locale: en_US
-permalink: /en/blog/2025/02/17/welcome/
-categories: [blog]
+permalink: /en/notes/2025/02/17/welcome/
+redirect_from:
+  - /en/blog/2025/02/17/welcome/
+categories: [notes]
 tags: [site]
 excerpt: "Why this site exists and what's going to show up here."
 ---
