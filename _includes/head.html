@@ -33,7 +33,20 @@
   })();
 </script>
 
-{%- seo -%}
+{%- comment -%}
+  jekyll-seo-tag всегда клеит "Заголовок | KZuev.com"; для явной
+  титульной страницы (главная, любого языка) заголовок сайта должен
+  быть виден один раз, без дублирования — отключаем его <title> и
+  пишем свой, остальные метатеги (og:title и т.д.) остаются как есть.
+{%- endcomment -%}
+{%- assign is_home = false -%}
+{%- if page.url == "/" or page.url == "/en/" -%}{%- assign is_home = true -%}{%- endif -%}
+{%- if is_home -%}
+  <title>{{ site.title }}</title>
+  {%- seo title=false -%}
+{%- else -%}
+  {%- seo -%}
+{%- endif -%}
 
 {%- comment -%}
   У страницы всегда есть зеркало на другом языке по тому же относительному

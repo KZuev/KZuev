@@ -1,6 +1,5 @@
 ---
 layout: home
-title: Home
 permalink: /en/
 description: >-
   Kirill Zuev — open-source projects, experiments, and notes on
