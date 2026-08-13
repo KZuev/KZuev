@@ -3,6 +3,14 @@
 <meta name="color-scheme" content="light dark">
 
 {%- comment -%}
+  Версия сборки в query-параметре: iOS Safari кеширует статику особенно
+  агрессивно и не всегда её ревалидирует, а GitHub Pages не даёт задать
+  свои Cache-Control. Меняя адрес файла при каждом деплое, заставляем
+  браузер просто скачать новую копию вместо переиспользования старой.
+{%- endcomment -%}
+{%- assign build_version = site.time | date: "%s" -%}
+
+{%- comment -%}
   Цвет системного UI подстраивается под тему: в тёмной он строго чёрный,
   чтобы на OLED-экранах панель браузера сливалась со страницей. Значение
   синхронизируется скриптом ниже и кнопкой переключения — единственный
@@ -46,7 +54,7 @@
   <link rel="alternate" hreflang="x-default" href="{{ ru_url | absolute_url }}">
 {%- endunless -%}
 
-<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}?v={{ build_version }}" type="image/svg+xml">
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-<script src="{{ '/assets/js/theme-toggle.js' | relative_url }}" defer></script>
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ build_version }}">
+<script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ build_version }}" defer></script>
