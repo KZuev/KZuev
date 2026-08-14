@@ -7,15 +7,16 @@ sitemap: false
 
 {%- comment -%}
   GitHub Pages отдаёт один и тот же /404.html для любого пути, включая
-  /en/..., и понять из URL, на каком языке говорить с человеком, нельзя —
-  поэтому здесь показаны оба языка сразу, а не выбирается один через
-  обычный per-page lang.
+  /en/..., и понять из URL на сервере, на каком языке говорить с
+  человеком, нельзя — Jekyll собирает эту страницу один раз при билде.
+  Поэтому здесь размечены оба языка, а скрипт ниже на клиенте прячет
+  ненужный по префиксу /en/ в фактическом адресе браузера.
 {%- endcomment -%}
 
 <div class="shell notfound">
   <p class="notfound__code">404</p>
 
-  <div class="notfound__lang">
+  <div class="notfound__lang" id="notfound-ru">
     <h1>Такой страницы нет</h1>
     <p class="lead">Возможно, адрес изменился или в ссылке опечатка. Вот куда можно пойти дальше.</p>
     <p class="actions">
@@ -25,7 +26,7 @@ sitemap: false
     </p>
   </div>
 
-  <div class="notfound__lang">
+  <div class="notfound__lang" id="notfound-en">
     <h1>Page not found</h1>
     <p class="lead">The address may have changed, or there's a typo in the link. Here's where to go instead.</p>
     <p class="actions">
@@ -34,4 +35,13 @@ sitemap: false
       <a class="button" href="{{ '/en/projects/' | relative_url }}">Projects</a>
     </p>
   </div>
+
+  <script>
+    (function () {
+      var enPrefix = "{{ '/en/' | relative_url }}";
+      var isEn = window.location.pathname.indexOf(enPrefix) === 0;
+      var hide = document.getElementById(isEn ? "notfound-ru" : "notfound-en");
+      if (hide) hide.style.display = "none";
+    })();
+  </script>
 </div>
