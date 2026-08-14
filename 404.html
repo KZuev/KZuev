@@ -16,6 +16,8 @@ sitemap: false
 <div class="shell notfound">
   <p class="notfound__code">404</p>
 
+  <a class="lang-switch" id="notfound-lang-switch" href="{{ '/en/404.html' | relative_url }}" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
+
   <div class="notfound__lang" id="notfound-ru">
     <h1>Такой страницы нет</h1>
     <p class="lead">Возможно, адрес изменился или в ссылке опечатка. Вот куда можно пойти дальше.</p>
@@ -39,9 +41,29 @@ sitemap: false
   <script>
     (function () {
       var enPrefix = "{{ '/en/' | relative_url }}";
-      var isEn = window.location.pathname.indexOf(enPrefix) === 0;
+      var path = window.location.pathname;
+      var isEn = path.indexOf(enPrefix) === 0;
+
       var hide = document.getElementById(isEn ? "notfound-ru" : "notfound-en");
       if (hide) hide.style.display = "none";
+
+      var switchEl = document.getElementById("notfound-lang-switch");
+      if (switchEl) {
+        if (isEn) {
+          var ruPath = path.slice(enPrefix.length - 1) || "{{ '/' | relative_url }}";
+          switchEl.href = ruPath;
+          switchEl.hreflang = "ru";
+          switchEl.lang = "ru";
+          switchEl.setAttribute("aria-label", "Перейти на русский");
+          switchEl.textContent = "RU";
+        } else {
+          switchEl.href = enPrefix + path.slice(1);
+          switchEl.hreflang = "en";
+          switchEl.lang = "en";
+          switchEl.setAttribute("aria-label", "Switch to English");
+          switchEl.textContent = "EN";
+        }
+      }
     })();
   </script>
 </div>
