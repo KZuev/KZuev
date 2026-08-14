@@ -20,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: telegram-ingest
@@ -48,3 +49,13 @@ jobs:
           git add _posts .github/telegram-state.json
           git commit -m "Заметка(и) из Telegram-канала"
           git push origin gh-pages
+
+      - name: Запустить сборку и деплой
+        # Пуш через GITHUB_TOKEN не триггерит workflow с "on: push" —
+        # это защита GitHub от бесконечных цепочек. Поэтому Deploy
+        # запускаем явно, иначе новая заметка останется закоммиченной,
+        # но не попадёт на сайт.
+        if: steps.ingest.outputs.has_new_posts == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref gh-pages
