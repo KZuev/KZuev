@@ -5,18 +5,10 @@ title: Страница не найдена
 sitemap: false
 ---
 
-{%- comment -%}
-  GitHub Pages отдаёт один и тот же /404.html для любого пути, включая
-  /en/..., и понять из URL на сервере, на каком языке говорить с
-  человеком, нельзя — Jekyll собирает эту страницу один раз при билде.
-  Поэтому здесь размечены оба языка, а скрипт ниже на клиенте прячет
-  ненужный по префиксу /en/ в фактическом адресе браузера.
-{%- endcomment -%}
-
 <div class="shell notfound">
   <p class="notfound__code">404</p>
 
-  <div class="notfound__lang" id="notfound-ru">
+  <div class="notfound__lang">
     <h1>Такой страницы нет</h1>
     <p class="lead">Возможно, адрес изменился или в ссылке опечатка. Вот куда можно пойти дальше.</p>
     <p class="actions">
@@ -25,43 +17,4 @@ sitemap: false
       <a class="button" href="{{ '/projects/' | relative_url }}">Проекты</a>
     </p>
   </div>
-
-  <div class="notfound__lang" id="notfound-en">
-    <h1>Page not found</h1>
-    <p class="lead">The address may have changed, or there's a typo in the link. Here's where to go instead.</p>
-    <p class="actions">
-      <a class="button button--primary" href="{{ '/en/' | relative_url }}">Home</a>
-      <a class="button" href="{{ '/en/notes/' | relative_url }}">All notes</a>
-      <a class="button" href="{{ '/en/projects/' | relative_url }}">Projects</a>
-    </p>
-  </div>
-
-  <script>
-    (function () {
-      var enPrefix = "{{ '/en/' | relative_url }}";
-      var path = window.location.pathname;
-      var isEn = path.indexOf(enPrefix) === 0;
-
-      var hide = document.getElementById(isEn ? "notfound-ru" : "notfound-en");
-      if (hide) hide.style.display = "none";
-
-      var switchEl = document.getElementById("notfound-lang-switch");
-      if (switchEl) {
-        if (isEn) {
-          var ruPath = path.slice(enPrefix.length - 1) || "{{ '/' | relative_url }}";
-          switchEl.href = ruPath;
-          switchEl.hreflang = "ru";
-          switchEl.lang = "ru";
-          switchEl.setAttribute("aria-label", "Перейти на русский");
-          switchEl.textContent = "RU";
-        } else {
-          switchEl.href = enPrefix + path.slice(1);
-          switchEl.hreflang = "en";
-          switchEl.lang = "en";
-          switchEl.setAttribute("aria-label", "Switch to English");
-          switchEl.textContent = "EN";
-        }
-      }
-    })();
-  </script>
 </div>

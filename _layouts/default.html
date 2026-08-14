@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'ru' }}">
+<html lang="{{ page.lang | default: site.lang | default: 'ru' }}">
 <head>
   {% include head.html %}
 </head>
 <body>
-  <a class="skip-link" href="#content">Перейти к содержимому</a>
+  <a class="skip-link" href="#content">{% if page.lang == 'en' %}Skip to content{% else %}Перейти к содержимому{% endif %}</a>
 
   {% include header.html %}
 

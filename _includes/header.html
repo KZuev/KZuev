@@ -31,18 +31,7 @@
     </nav>
 
     <div class="site-header__controls">
-      {%- comment -%}
-        На 404 адрес перевода на сервере не посчитать — Jekyll собирает
-        эту единственную страницу один раз при билде, а GitHub Pages
-        раздаёт её на любой несуществующий путь. Поэтому здесь ссылка
-        с безопасным дефолтом, а её href/подписи на клиенте подставляет
-        скрипт в 404.html по фактическому адресу в браузере.
-      {%- endcomment -%}
-      {%- if page.url == "/404.html" -%}
-      <a class="lang-switch" id="notfound-lang-switch" href="{{ '/en/' | relative_url }}" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
-      {%- else -%}
       <a class="lang-switch" href="{{ other_url | relative_url }}" hreflang="{% if page.lang == 'en' %}ru{% else %}en{% endif %}" lang="{% if page.lang == 'en' %}ru{% else %}en{% endif %}" aria-label="{{ t.lang_switch.aria }}">{{ t.lang_switch.label }}</a>
-      {%- endif -%}
 
       <button type="button" class="theme-toggle" aria-pressed="false" aria-label="{{ t.theme_toggle.aria }}" data-label-to-dark="{{ t.theme_toggle.to_dark }}" data-label-to-light="{{ t.theme_toggle.to_light }}">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
