@@ -12,6 +12,8 @@ name: Telegram → заметки
 #   4. В Settings → Secrets and variables → Actions добавить:
 #        TELEGRAM_BOT_TOKEN
 #        TELEGRAM_CHANNEL_ID
+#        ANTHROPIC_API_KEY (для автоперевода на английский; без него
+#        публикуется только русская версия)
 
 on:
   schedule:
@@ -39,6 +41,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node .github/scripts/telegram-ingest.mjs
 
       - name: Закоммитить и запушить

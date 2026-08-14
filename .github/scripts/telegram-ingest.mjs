@@ -17,6 +17,10 @@ const API_BASE = process.env.TELEGRAM_API_BASE || "https://api.telegram.org";
 const STATE_PATH = path.resolve(".github/telegram-state.json");
 const POSTS_DIR = path.resolve("_posts");
 
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ANTHROPIC_API_BASE = process.env.ANTHROPIC_API_BASE || "https://api.anthropic.com";
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5";
+
 if (!BOT_TOKEN) {
   console.error("TELEGRAM_BOT_TOKEN не задан");
   process.exit(1);
@@ -85,6 +89,57 @@ function yamlString(value) {
 
 function yamlList(items) {
   return `[${items.map(yamlString).join(", ")}]`;
+}
+
+async function translateToEnglish(title, tags, body) {
+  const prompt = [
+    "Translate this personal tech-blog note from Russian to English.",
+    "Keep the tone casual, first-person, concise — a personal engineering",
+    "blog, not a tutorial or marketing copy. Keep product/technology names",
+    "as-is (Trakt, Lampa, iOS, GitHub, etc). Preserve paragraph breaks",
+    "(blank line between paragraphs), plain text, no added markdown.",
+    "Translate the tags too, unless they're proper nouns.",
+    "",
+    'Reply with ONLY strict JSON, no code fences, no commentary:',
+    '{"title": string, "tags": string[], "body": string}',
+    "",
+    "---",
+    `title: ${title}`,
+    `tags: ${tags.join(", ")}`,
+    "body:",
+    body,
+  ].join("\n");
+
+  const res = await fetch(`${ANTHROPIC_API_BASE}/v1/messages`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model: ANTHROPIC_MODEL,
+      max_tokens: 2048,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Anthropic API error: ${res.status} ${await res.text()}`);
+  }
+
+  const data = await res.json();
+  const raw = data.content?.[0]?.text ?? "";
+  const cleaned = raw.trim().replace(/^```(?:json)?/, "").replace(/```$/, "").trim();
+  const parsed = JSON.parse(cleaned);
+  if (!parsed.title || !parsed.body) {
+    throw new Error("Некорректный ответ перевода: нет title/body");
+  }
+  return {
+    title: parsed.title,
+    tags: Array.isArray(parsed.tags) ? parsed.tags : tags,
+    body: parsed.body,
+  };
 }
 
 async function fetchUpdates(offset) {
@@ -157,6 +212,39 @@ async function main() {
     writeFileSync(filePath, frontMatter);
     createdFiles.push(filePath);
     console.log(`Создан ${filePath}`);
+
+    if (ANTHROPIC_API_KEY) {
+      try {
+        const en = await translateToEnglish(title, tags, body);
+        const finalSlug = filename.slice(dateStr.length + 1, -3);
+        const enFilename = filename.replace(/\.md$/, "-en.md");
+        const enFilePath = path.join(POSTS_DIR, enFilename);
+        const enPermalink = `/en/notes/${dateStr.split("-").join("/")}/${finalSlug}/`;
+
+        const enFrontMatter = [
+          "---",
+          "layout: post",
+          `title: ${yamlString(en.title)}`,
+          `date: ${dateStr}`,
+          "lang: en",
+          "locale: en_US",
+          `permalink: ${enPermalink}`,
+          "categories: [notes]",
+          `tags: ${yamlList(en.tags)}`,
+          'excerpt: ""',
+          "---",
+          "",
+          en.body,
+          "",
+        ].join("\n");
+
+        writeFileSync(enFilePath, enFrontMatter);
+        createdFiles.push(enFilePath);
+        console.log(`Создан ${enFilePath}`);
+      } catch (err) {
+        console.error(`Перевод не удался, публикую только RU: ${err.message}`);
+      }
+    }
   }
 
   saveState({ offset: lastOffset });
