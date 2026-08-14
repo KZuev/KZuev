@@ -16,7 +16,7 @@ layout: default
       {%- endif %}
     </div>
     <h1 itemprop="headline">{{ page.title }}</h1>
-    {%- if page.excerpt %}
+    {%- if page.excerpt and page.excerpt != empty %}
     <p class="lead">{{ page.excerpt | strip_html | strip }}</p>
     {%- endif %}
   </header>
