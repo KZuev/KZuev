@@ -75,6 +75,28 @@
 </script>
 {%- endif -%}
 
+{%- comment -%}
+  GitHub Pages отдаёт этот единственный собранный /404.html на любой
+  несуществующий путь, включая /en/..., но сам файл при билде об этом
+  не знает — Jekyll видит только "/404.html". Если реальный адрес в
+  браузере начинается с /en/, тут же уходим на настоящую англоязычную
+  404-страницу (обычная зеркальная страница, как и весь остальной сайт).
+{%- endcomment -%}
+{%- assign is_404 = false -%}
+{%- if page.url == "/404.html" -%}{%- assign is_404 = true -%}{%- endif -%}
+{%- if is_404 -%}
+<script>
+  (function () {
+    try {
+      var enPrefix = "{{ '/en/' | relative_url }}";
+      if (window.location.pathname.indexOf(enPrefix) === 0) {
+        location.replace("{{ '/en/404.html' | relative_url }}");
+      }
+    } catch (e) {}
+  })();
+</script>
+{%- endif -%}
+
 {%- if is_home -%}
   <title>{{ site.title }}</title>
   {%- seo title=false -%}
@@ -85,21 +107,18 @@
 {%- comment -%}
   У страницы всегда есть зеркало на другом языке по тому же относительному
   пути с префиксом /en — так устроена вся структура контента (см. header.html).
-  На 404 зеркала нет: страница показывает оба языка сразу.
 {%- endcomment -%}
-{%- unless page.url == "/404.html" -%}
-  {%- if page.lang == "en" -%}
-    {%- assign ru_url = page.url | remove_first: "/en" -%}
-    {%- if ru_url == "" -%}{%- assign ru_url = "/" -%}{%- endif -%}
-    {%- assign en_url = page.url -%}
-  {%- else -%}
-    {%- assign ru_url = page.url -%}
-    {%- assign en_url = "/en" | append: page.url -%}
-  {%- endif -%}
-  <link rel="alternate" hreflang="ru" href="{{ ru_url | absolute_url }}">
-  <link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">
-  <link rel="alternate" hreflang="x-default" href="{{ ru_url | absolute_url }}">
-{%- endunless -%}
+{%- if page.lang == "en" -%}
+  {%- assign ru_url = page.url | remove_first: "/en" -%}
+  {%- if ru_url == "" -%}{%- assign ru_url = "/" -%}{%- endif -%}
+  {%- assign en_url = page.url -%}
+{%- else -%}
+  {%- assign ru_url = page.url -%}
+  {%- assign en_url = "/en" | append: page.url -%}
+{%- endif -%}
+<link rel="alternate" hreflang="ru" href="{{ ru_url | absolute_url }}">
+<link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ ru_url | absolute_url }}">
 
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}?v={{ build_version }}" type="image/svg+xml">
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
