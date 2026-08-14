@@ -10,7 +10,9 @@
       {%- for link in site.data.social %}
       <a href="{{ link.url }}"{% unless link.url contains 'mailto:' %} rel="me noopener"{% endunless %}>{{ link.name }}</a>
       {%- endfor %}
+      {%- if page.lang == "ru" -%}
       <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      {%- endif -%}
     </nav>
 
     <p class="site-footer__meta muted">© {{ 'now' | date: "%Y" }} — {{ t.footer.built_with }}</p>

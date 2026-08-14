@@ -121,7 +121,9 @@
 <link rel="alternate" hreflang="x-default" href="{{ ru_url | absolute_url }}">
 
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}?v={{ build_version }}" type="image/svg+xml">
+{%- if page.lang == "ru" -%}
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+{%- endif -%}
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ build_version }}">
 <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ build_version }}" defer></script>
 
