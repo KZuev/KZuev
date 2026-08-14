@@ -4,7 +4,7 @@ title: "My own Lampa client for iOS"
 date: 2026-08-14
 lang: en
 locale: en_US
-permalink: /en/notes/2026/08/14/lampa-ios-client/
+permalink: /en/notes/2026/08/14/svoy-klient-lampa-dlya-ios/
 categories: [notes]
 tags: ["iOS", "Lampa", "Trakt"]
 excerpt: ""
