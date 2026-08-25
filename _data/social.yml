@@ -10,7 +10,7 @@
 
 - name: Telegram
   url: https://t.me/kirillzuev
-  handle: "@kirillzuev"
+  handle: "kirillzuev"
   note:
     ru: Для быстрых вопросов
     en: For quick questions
@@ -21,7 +21,7 @@
 
 - name: X
   url: https://x.com/kzuev
-  handle: "@kzuev"
+  handle: "kzuev"
 
 - name: LinkedIn
   url: https://www.linkedin.com/in/kzuev
