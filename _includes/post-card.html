@@ -16,9 +16,9 @@
 
   <div class="entry__excerpt">
     {%- if include.post.excerpt and include.post.excerpt != empty %}
-      <p>{{ include.post.excerpt | strip_html | strip | truncatewords: 60 }}</p>
+      <p>{{ include.post.excerpt | strip_html | strip | truncatewords: 80 }}</p>
     {%- else %}
-      <p>{{ include.post.content | strip_html | strip | truncatewords: 60 }}</p>
+      <p>{{ include.post.content | strip_html | strip | truncatewords: 80 }}</p>
     {%- endif %}
   </div>
 </article>
